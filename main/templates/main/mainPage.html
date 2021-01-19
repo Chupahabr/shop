@@ -1,0 +1,37 @@
+{% extends 'learn/wrapper.html' %}
+{% block content %}
+
+<section class="row section-main">
+    <div class="col-lg-4 col-6">
+        <a href="{% url 'people' 'male' %}" class="photo">
+            <h1>Мужчины</h1>
+            {% load static %}
+                <img src="{% static 'main/image/men_1224-removebg.png' %}" />
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-6">
+        <a href="{% url 'people' 'female' %}" class="photo">
+            <h1>Женщины</h1>
+            {% load static %}
+                <img src="{% static 'main/image/girl_1224-removebg.png' %}" />
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-12">
+        <a href="{% url 'people' 'child' %}" class="photo">
+            <h1>Дети</h1>
+            {% load static %}
+                <img src="{% static 'main/image/child_1224.png' %}" />
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

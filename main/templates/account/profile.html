@@ -1,0 +1,8 @@
+{% extends "learn/wrapper.html" %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<p>Привет {{user.username}}</p>
+{% endif %}
+
+{% endblock %}

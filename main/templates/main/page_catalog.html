@@ -1,0 +1,8 @@
+{% extends 'learn/wrapper.html' %}
+{% block content %}
+
+{{people}}
+{% for val in cat %}
+<a href="{% url 'people' people, val.category %}">{{val.category}}</a>
+{% endfor %}
+{% endblock %}
