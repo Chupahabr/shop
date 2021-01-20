@@ -3,6 +3,7 @@ from django.db import models
 class category(models.Model):
     id_category = models.AutoField(primary_key=True)
     category = models.CharField(max_length=50, verbose_name="Категории")
+    url = models.CharField(max_length=50, verbose_name="URL", default="url")
 
     def __str__(self):
         return self.category

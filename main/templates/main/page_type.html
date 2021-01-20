@@ -1,0 +1,11 @@
+{% extends 'learn/wrapper.html' %}
+{% block content %}
+
+<p>{{people}}</p>
+<p>{{category}}</p>
+
+    {% for el in cat %}
+        <a href="/">{{el.category}}</a>
+    {% endfor %}
+
+{% endblock %}

@@ -1,8 +1,16 @@
 {% extends 'learn/wrapper.html' %}
 {% block content %}
 
-{{people}}
-{% for val in cat %}
-<a href="{% url 'people' people, val.category %}">{{val.category}}</a>
+{% for el in cat %}
+    <div>
+        <a href="{% url 'type_prod' 'female' el.url %}">{{el.category}}</a><br>
+            {% for type in types %}
+                {% if type.category|safe == el.category|safe %}
+                <a href="">{{type.p_type}}</a><br>
+                {% endif %}
+            {% endfor %}
+    </div><br>
 {% endfor %}
+
+
 {% endblock %}
