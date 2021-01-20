@@ -18,13 +18,14 @@ class production_type(models.Model):
     category = models.ForeignKey(category, on_delete=models.PROTECT, verbose_name="Категория", null=True)
     
     arr_people = (
-        ('a','All'),
         ('m','Male'),
         ('f','Female'),
         ('c','Child'),
         )
     people = models.TextField(verbose_name="Люди", choices=arr_people, default='All')
     description = models.TextField(verbose_name="Описание", null=True)
+
+    image = models.ImageField(verbose_name='Изображения', upload_to="type/", null=True)
 
     def __str__(self):
         return self.p_type
@@ -74,11 +75,3 @@ class product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         
-
-# arr_keep = (
-#     ('S','Small'),
-#     ('M','Medium'),
-#     ('L','Large'),
-#     ('P','Portion'),
-#     )
-# keep = models.TextField(verbose_name="Уход", choices=arr_keep)

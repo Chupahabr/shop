@@ -134,6 +134,9 @@ SITE_ID = 1
 
 IS_MONOLINGUAL=False
 
+
+
+
 gettext = lambda s: s
 LANGUAGES = (
     ('ru', gettext('Russia')),
@@ -152,6 +155,13 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static_dev'),
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
