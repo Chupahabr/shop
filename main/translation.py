@@ -24,4 +24,4 @@ class sport_typeTranslationOptions(TranslationOptions):
 
 @register(product)
 class productTranslationOptions(TranslationOptions):
-    fields = ('prod_name', 'info', 'about', 'upkeep', 'size_and_cut', 'brand', 'sport_type', 'production_type',)
+    fields = ('prod_name', 'info', 'about', 'upkeep', 'size_and_cut',)

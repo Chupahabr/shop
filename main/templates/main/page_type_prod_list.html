@@ -1,0 +1,18 @@
+{% extends 'learn/wrapper.html' %}
+{% block content %}
+
+<div class="row text-center p-3 cont-info-type">
+    <p class="h3">{{g}} {{type_prod.p_type}}</p>
+    <p class="desc">{{type_prod.description}}</p>
+    <a href="#">Подробнее</a href="#">
+</div>
+
+{% for item in prod_list %}
+    <a href="#" class="d-flex prod-cont flex-wrap p-3">
+        <img src="{{item.image.url}}" alt="">
+        <span class="name">{{item.prod_name}}</span>
+        <span class="price">Цена: {{item.price}},00 руб</span>
+    </a>
+{% endfor %}
+
+{% endblock %}

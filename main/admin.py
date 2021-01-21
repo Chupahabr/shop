@@ -7,7 +7,21 @@ from django.utils.safestring import mark_safe
 
 admin.site.register(brand)
 admin.site.register(sport_type)
-admin.site.register(product)
+
+@admin.register(product)
+class productAdmin(admin.ModelAdmin):
+    list_display = ('prod_name', 'get_image')
+    list_display_links = ('prod_name',)
+    readonly_fields = ('get_image',)
+
+    def get_image(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src={obj.image.url} width="90" height="120">')
+        else:
+            return '(none)'
+
+    get_image.allow_tags = True
+    get_image.short_description = "Изображение"
 
 @admin.register(category)
 class categoryAdmin(admin.ModelAdmin):
@@ -23,7 +37,7 @@ class production_typeAdmin(admin.ModelAdmin):
 
     def get_image(self, obj):
         if obj.image:
-            return mark_safe(f'<img src={obj.image.url} width="80" height="100">')
+            return mark_safe(f'<img src={obj.image.url} width="90" height="120">')
         else:
             return '(none)'
 

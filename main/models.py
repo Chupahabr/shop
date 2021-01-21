@@ -15,7 +15,7 @@ class category(models.Model):
 class production_type(models.Model):
     id_prod = models.AutoField(primary_key=True)
     p_type = models.CharField(max_length=50, verbose_name="Тип")
-    category = models.ForeignKey(category, on_delete=models.PROTECT, verbose_name="Категория", null=True)
+    category = models.ForeignKey(category, on_delete=models.PROTECT, verbose_name="Категория", blank=True, null=True)
     
     arr_people = (
         ('m','Male'),
@@ -23,9 +23,10 @@ class production_type(models.Model):
         ('c','Child'),
         )
     people = models.TextField(verbose_name="Люди", choices=arr_people, default='All')
-    description = models.TextField(verbose_name="Описание", null=True)
+    description = models.TextField(verbose_name="Описание", blank=True, null=True)
 
-    image = models.ImageField(verbose_name='Изображения', upload_to="type/", null=True)
+    image = models.ImageField(verbose_name='Изображения', upload_to="type/", blank=True, null=True)
+    url = models.CharField(max_length=50, verbose_name="URL", default="url")
 
     def __str__(self):
         return self.p_type
@@ -58,15 +59,25 @@ class sport_type(models.Model):
 
 class product(models.Model):
     id_prod = models.AutoField(primary_key=True)
-    prod_name = models.CharField(max_length=50, verbose_name="Название")
+    prod_name = models.CharField(max_length=250, verbose_name="Название")
     info = models.TextField(verbose_name="Информация")
     about = models.TextField(verbose_name="Обо мне")
     upkeep = models.TextField(verbose_name="Уход")
-    size_and_cut = models.TextField(verbose_name="Размер и крой", null=True)
+    size_and_cut = models.TextField(verbose_name="Размер и крой", blank=True, null=True)
+    price = models.IntegerField(verbose_name="Цена", blank=True, null=True, default=0)
+
     
-    brand = models.ForeignKey(brand, on_delete=models.PROTECT, verbose_name="Бренд", null=True)
-    sport_type = models.ForeignKey(sport_type, on_delete=models.PROTECT, verbose_name="Вид спорта", null=True)
-    production_type = models.ForeignKey(production_type, on_delete=models.PROTECT, verbose_name="Тип продукта", null=True)
+    brand = models.ForeignKey(brand, on_delete=models.PROTECT, verbose_name="Бренд", blank=True, null=True)
+    sport_type = models.ForeignKey(sport_type, on_delete=models.PROTECT, verbose_name="Вид спорта", blank=True, null=True)
+    production_type = models.ForeignKey(production_type, on_delete=models.PROTECT, verbose_name="Тип продукта", blank=True, null=True)
+    image = models.ImageField(verbose_name='Изображения', upload_to="prod/", blank=True, null=True)
+    
+    # arr_people = (
+    #     ('m','Male'),
+    #     ('f','Female'),
+    #     ('c','Child'),
+    #     )
+    # people = models.TextField(verbose_name="Люди", choices=arr_people, default='All')
 
     def __str__(self):
         return self.prod_name

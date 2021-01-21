@@ -171,3 +171,30 @@ html::-webkit-scrollbar-track {
   background-position: right;
   transform: scale(-1, 1);
 }
+
+.cont-type {
+  width: 200px;
+  text-align: center;
+}
+
+.prod-cont {
+  text-align: center;
+  width: 250px;
+  color: black;
+  text-decoration: none;
+}
+.prod-cont img {
+  width: 100%;
+}
+.prod-cont .name {
+  font-size: 14px;
+}
+
+.cont-info-type .desc {
+  font-family: "Noto Serif", serif;
+  font-size: 14px;
+}
+.cont-info-type a {
+  text-decoration: none;
+  color: black;
+}
