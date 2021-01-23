@@ -198,3 +198,7 @@ html::-webkit-scrollbar-track {
   text-decoration: none;
   color: black;
 }
+
+.title-type {
+  font-family: "Roboto Slab", sans-serif;
+}

@@ -30,7 +30,7 @@ class categoryAdmin(admin.ModelAdmin):
 
 @admin.register(production_type)
 class production_typeAdmin(admin.ModelAdmin):
-    list_display = ('p_type', 'category', 'people', 'get_image')
+    list_display = ('p_type', 'category', 'people','url' ,'get_image')
     list_display_links = ('p_type',)
     list_filter = ('category', 'people')
     readonly_fields = ('get_image',)

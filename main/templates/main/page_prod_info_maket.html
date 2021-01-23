@@ -1,0 +1,26 @@
+{% extends 'learn/wrapper.html' %}
+{% block content %}
+<div>
+    <div class="row">
+    {% block comeback %}
+        
+    {% endblock %}
+    </div>
+    <div class="row">
+        <div class="col-md-1 col-lg-1"></div>
+        <div class="col-md-5 col-lg-4 p-3"><img src="{{prod.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></div>
+        <div class="col-md-5 col-lg-6">
+            <div class="h4 p-3">{{prod.prod_name}}</div>
+            <div class="h4 p-3">Цена: {{prod.price}}</div>
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+    </div>
+    <div class="row d-flex flex-wrap justify-content-around">
+        <div class="col-4 text-center"><p class="h4">Информация</p>{{prod.info}}</div>
+        <div class="col-4 text-center"><p class="h4">Обо мне</p>{{prod.about}}</div>
+        <div class="col-4 text-center"><p class="h4">Уход</p>{{prod.upkeep}}</div>
+        <div class="col-4 text-center"><p class="h4">Размер и шов</p>{{prod.size_and_cut}}</div>
+    </div>
+</div>
+
+{% endblock %}

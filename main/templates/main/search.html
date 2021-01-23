@@ -1,19 +1,20 @@
 {% extends 'learn/wrapper.html' %}
 {% block content %}
 
-<div class="row text-center p-3 cont-info-type">
-    <p class="h3 title-type">{{g}} {{type_prod.p_type}}</p>
-    <p class="desc">{{type_prod.description}}</p>
+<div class="row">
+    <p class="h3">
+        Результат поиска "{{search_value}}"
+    </p>
 </div>
 
-
-
+<div class="row">
 {% for item in prod_list %}
-    <a href="{% url 'prod_info' people item.id_prod %}" class="d-flex prod-cont flex-wrap p-3">
+    <a href="{% url 'search_prod_info'  item.id_prod search_value %}" class="d-flex prod-cont flex-wrap p-3">
         <img src="{{item.image.url}}" alt="">
         <span class="name">{{item.prod_name}}</span>
         <span class="price">Цена: {{item.price}},00 руб</span>
     </a>
 {% endfor %}
+</div>
 
 {% endblock %}

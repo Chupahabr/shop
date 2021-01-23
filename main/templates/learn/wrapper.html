@@ -11,8 +11,8 @@
     <!-- <link rel="stylesheet" href="{% static 'main/css/jquery.scrollbar.css' %}" type="text/css"> -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab&display=swap" rel="stylesheet">
     <title>Туть</title>
 </head>
 <body class="container-fluid body-titles">
@@ -43,17 +43,20 @@
             </ul>
             <div>
                 <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                  <li class="nav-item"><a class="nav-link" href="">
+                  <img src="{% static 'main/image/shopping-cart.png' %}"/>
+                  </a></li>
                   {% if user.is_authenticated %}
-                  <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">{{user.username|upper}}</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Выйти</a></li>
+                  <li class="nav-item"><a class="nav-link mt-1" href="{% url 'profile' %}">{{user.username|upper}}</a></li>
+                  <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_logout' %}">Выйти</a></li>
                   {% else %}
-                  <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Вход</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Регистрация</a></li>
+                  <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_login' %}">Вход</a></li>
+                  <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_signup' %}">Регистрация</a></li>
                   {% endif %}
                 </ul>
               </div>
-            {% comment %} <form class="d-flex" action="{% url 'search' %}" method="GET"> {% endcomment %}
-                <input class="form-control mr-2 w-25" type="search" placeholder="Искать" aria-label="Search" name="search">
+            <form class="d-flex" action="{% url 'search' %}" method="GET">
+                <input class="form-control mr-2 w-75" type="search" placeholder="Искать" aria-label="Search" name="search">
                 <button class="btn btn-outline-success" type="submit">Искать</button>
             </form> 
             </div>
@@ -95,7 +98,7 @@
 {% endblock %}
 </main>
 <footer>
-    <span>© 2020</span>
+    <span>© 2021</span>
 </footer>
 <script src="{% static 'main/javascript/script.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

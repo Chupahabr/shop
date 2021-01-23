@@ -1,0 +1,4 @@
+{% extends 'main/page_prod_info_maket.html' %}
+{% block comeback %}
+    <p><a href="{% url 'main' %}">Главная</a> -> <a href="{% url 'category_list' people %}">{{g}}</a> -> <a href="{% url 'type_prod' people cat.url %}">{{category}}</a> -> <a href="{% url 'prod_type_list' people cat.url type.url %}">{{type}}</a> -> <a>{{prod.prod_name}}</a></p>
+{% endblock %}
