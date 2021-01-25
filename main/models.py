@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 class category(models.Model):
     id_category = models.AutoField(primary_key=True)
@@ -73,18 +75,19 @@ class product(models.Model):
     production_type = models.ForeignKey(production_type, on_delete=models.PROTECT, verbose_name="Тип продукта", blank=True, null=True)
     image = models.ImageField(verbose_name='Изображения', upload_to="prod/", blank=True, null=True)
 
-    
-    # arr_people = (
-    #     ('m','Male'),
-    #     ('f','Female'),
-    #     ('c','Child'),
-    #     )
-    # people = models.TextField(verbose_name="Люди", choices=arr_people, default='All')
-
     def __str__(self):
         return self.prod_name
 
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
-        
+
+class user_basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Пользователь")
+    product = models.ForeignKey(product, on_delete=models.PROTECT, verbose_name="Продукт")
+    count = models.IntegerField(verbose_name='Количество', default='1')
+    
+    class Meta:
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзина'
+    

@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path('accounts/profile/', views.profile, name="profile"),
+    path('accounts/profile/basket', views.basket, name="basket"),
     path('', views.index, name="main"),
     path('p-<str:people>/', views.category_list, name="category_list"),
     path('p-<str:people>/c-<slug:name_category>/', views.type_prod, name="type_prod"),

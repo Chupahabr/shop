@@ -1,4 +1,6 @@
-from .models import category, product, production_type, brand, sport_type
+from .models import category, product, production_type, brand, sport_type, user_basket
+from django.db.models.query import EmptyQuerySet
+from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -46,7 +48,17 @@ def search_prod_info(request, pk, ser_val):
     prod = product.objects.filter(Q(id_prod=pk))
     search_value = ser_val
     return render(request, 'main/page_prod_info_search.html', {'prod': prod[0], "search_value": search_value})
-
+def basket(request):
+    user_id = User.objects.get(username=request.user.username).id
+    basket = user_basket.objects.filter(user=user_id)
+    basket_prod = []
+    for item in basket:
+        prod_name = item.product
+        prod_list = product.objects.filter(Q(prod_name=prod_name))
+        basket_prod.extend(prod_list)
+    print(basket_prod[0].prod_name)
+    print(basket[0].product)
+    return render(request, 'main/basket.html', {'basket': basket, 'basket_prod': basket_prod})
 
 
 def ru_people(people):

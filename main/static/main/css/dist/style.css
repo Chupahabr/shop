@@ -202,3 +202,25 @@ html::-webkit-scrollbar-track {
 .title-type {
   font-family: "Roboto Slab", sans-serif;
 }
+
+.info {
+  font-size: 14px;
+}
+
+.bi-heart-fill {
+  display: none;
+}
+
+.heart {
+  display: inline-block;
+}
+.heart:hover .bi-heart {
+  display: none;
+}
+.heart:hover .bi-heart-fill {
+  display: inline-block;
+}
+
+.basket-img {
+  width: 150px;
+}

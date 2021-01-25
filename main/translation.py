@@ -12,7 +12,7 @@ translator.register(category, categoryTranslationOptions)
 
 @register(production_type)
 class production_typeTranslationOptions(TranslationOptions):
-    fields = ('p_type',)
+    fields = ('p_type', 'description',)
 
 @register(brand)
 class brandTranslationOptions(TranslationOptions):

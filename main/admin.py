@@ -1,12 +1,17 @@
 from django import forms
 from django.contrib import admin
-from .models import category, product, production_type, brand, sport_type
+from .models import category, product, production_type, brand, sport_type, user_basket
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.translator import register
 from django.utils.safestring import mark_safe
 
 admin.site.register(brand)
 admin.site.register(sport_type)
+
+@admin.register(user_basket)
+class user_basketAdmin(admin.ModelAdmin):
+    list_display = ('user', 'product', 'count')
+    list_display_links = ('user',)
 
 @admin.register(product)
 class productAdmin(admin.ModelAdmin):

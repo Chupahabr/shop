@@ -1,26 +1,39 @@
 {% extends 'learn/wrapper.html' %}
 {% block content %}
-<div>
-    <div class="row">
-    {% block comeback %}
-        
-    {% endblock %}
-    </div>
-    <div class="row">
-        <div class="col-md-1 col-lg-1"></div>
-        <div class="col-md-5 col-lg-4 p-3"><img src="{{prod.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></div>
-        <div class="col-md-5 col-lg-6">
-            <div class="h4 p-3">{{prod.prod_name}}</div>
-            <div class="h4 p-3">Цена: {{prod.price}}</div>
+<div class="row">
+{% block comeback %}
+    
+{% endblock %}
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col">
+        <div class="row">
+            <div class="col-md-1 col-lg-1"></div>
+            <div class="col-md-5 col-lg-4 p-3"><img src="{{prod.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></div>
+            <div class="col-md-5 col-lg-6">
+                <div class="h4 p-3">{{prod.prod_name}}</div>
+                <div class="h4 p-3">Цена: {{prod.price}}</div>
+                <button class="btn-success btn">Добавить в карзину</button>
+                <a href="#" class="heart">
+                    <svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                    </svg>
+                    <svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="col-md-1 col-lg-1"></div>
         </div>
-        <div class="col-md-1 col-lg-1"></div>
+        <div class="row d-flex flex-wrap justify-content-around info">
+            <div class="col-4 text-center p-3"><p class="h4">Информация</p>{{prod.info}}</div>
+            <div class="col-4 text-center p-3"><p class="h4">Обо мне</p>{{prod.about}}</div>
+            <div class="col-4 text-center p-3"><p class="h4">Уход</p>{{prod.upkeep}}</div>
+            <div class="col-4 text-center p-3"><p class="h4">Размер и шов</p>{{prod.size_and_cut}}</div>
+        </div>
     </div>
-    <div class="row d-flex flex-wrap justify-content-around">
-        <div class="col-4 text-center"><p class="h4">Информация</p>{{prod.info}}</div>
-        <div class="col-4 text-center"><p class="h4">Обо мне</p>{{prod.about}}</div>
-        <div class="col-4 text-center"><p class="h4">Уход</p>{{prod.upkeep}}</div>
-        <div class="col-4 text-center"><p class="h4">Размер и шов</p>{{prod.size_and_cut}}</div>
-    </div>
+    <div class="col-1"></div>
 </div>
 
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'learn/wrapper.html' %}
+{% block content %}
+
+<div>
+    <p class="h4">Моя корзина</p>
+    {% for item in basket %}
+        {% for item2 in basket_prod %}
+            {% if item.product|safe == item2.prod_name|safe %}
+            <div class="d-flex flex-wrap">
+                <img src="{{item2.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} basket-img" alt="">
+                <span class="d-inline">{{item.product}}</span>
+                <span class="d-inline">{{item.count}}</span>
+                <span class="d-inline">{{item2.price}},00 руб</span>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+<div>
+
+</div>
+
+{% endblock %}
