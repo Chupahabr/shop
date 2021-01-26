@@ -91,3 +91,10 @@ class user_basket(models.Model):
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзина'
     
+class save_item (models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Пользователь")
+    product = models.ForeignKey(product, on_delete=models.PROTECT, verbose_name="Продукт")
+
+    class Meta:
+        verbose_name = "Понравившиеся"
+        verbose_name_plural = "Понравившиеся"

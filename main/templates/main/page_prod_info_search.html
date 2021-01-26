@@ -1,4 +1,4 @@
 {% extends 'main/page_prod_info_maket.html' %}
 {% block comeback %}
-    <p><a href="{% url 'main' %}">Главная</a> -> <a href="{% url 'search' %}?search={{search_value}}">Вернуться на страницу поиска "{{search_value}}"</a></p>
+    <p><a href="{% url 'main' %}">Главная</a> -> <a href="{% url 'search' %}?search={{search_value}}">Вернуться на страницу поиска "{{search_value}}"</a> -> {{prod.prod_name}}</p>
 {% endblock %}

@@ -1,20 +1,34 @@
 {% extends 'learn/wrapper.html' %}
 {% block content %}
 
-<div>
+<div class="row">
     <p class="h4">Моя корзина</p>
+    <div class="col-md-8 col-12">
     {% for item in basket %}
         {% for item2 in basket_prod %}
             {% if item.product|safe == item2.prod_name|safe %}
-            <div class="d-flex flex-wrap">
-                <img src="{{item2.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} basket-img" alt="">
-                <span class="d-inline">{{item.product}}</span>
-                <span class="d-inline">{{item.count}}</span>
-                <span class="d-inline">{{item2.price}},00 руб</span>
+            <div class="d-flex basket-item fluid-content p-3 w-100">
+                <img src="{{item2.image.url}}" class="col-3 img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} basket-img" alt="">
+                <div class="row col-9 p-3">
+                    <a class="d-inline" href="{% url 'basket_info' item2.id_prod %}">{{item.product}}</a>
+                    <span class="d-inline w-50">Количество:
+                    <select name="count" class="form-control w-md-25 w-50">
+                        {% for index in num %}
+                        <option value="{{index}}">{{index}}</option>
+                        {% endfor %}
+                    </select>
+                    </span>
+                    <span class="d-inline">{{item2.price}},00 руб</span>
+                </div>
             </div>
             {% endif %}
         {% endfor %}
     {% endfor %}
+    </div>
+    <div class="col-md-4 col-12">
+        <p class="h3 text-center">Итоговая стоимость</p>
+        <p class="">Цена: {{full}},00 руб</p>
+    </div>
 </div>
 <div>
 

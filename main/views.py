@@ -52,14 +52,20 @@ def basket(request):
     user_id = User.objects.get(username=request.user.username).id
     basket = user_basket.objects.filter(user=user_id)
     basket_prod = []
+    arr_num = range(1, 11)
+    full_price = 0
     for item in basket:
+        count = item.count
         prod_name = item.product
         prod_list = product.objects.filter(Q(prod_name=prod_name))
+        full_price += count * prod_list[0].price
         basket_prod.extend(prod_list)
-    print(basket_prod[0].prod_name)
-    print(basket[0].product)
-    return render(request, 'main/basket.html', {'basket': basket, 'basket_prod': basket_prod})
-
+    return render(request, 'main/basket.html', {'full': full_price, 'basket': basket, 'basket_prod': basket_prod, 'num': arr_num})
+def buscket_insert(request):
+    print('tut')
+def basket_info(request, pk):
+    prod = product.objects.filter(Q(id_prod=pk))
+    return render(request, 'main/basket_info.html',{'prod':prod[0]})
 
 def ru_people(people):
     if people == 'male':

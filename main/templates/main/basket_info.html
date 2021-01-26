@@ -1,0 +1,4 @@
+{% extends 'main/page_prod_info_maket.html' %}
+{% block comeback %}
+    <p><a href="{% url 'main' %}">Главная</a> -> <a href="{% url 'basket' %}">Моя корзина</a> -> {{prod.prod_name}}</p>
+{% endblock %}
