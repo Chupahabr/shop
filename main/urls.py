@@ -14,6 +14,6 @@ urlpatterns = [
     path('p-<str:people>/c-<slug:category>/t-<slug:type>', views.prod_type_list, name="prod_type_list"),
     path('p-<str:people>/info-<int:pk>', views.prod_info, name="prod_info"),
     path('search', views.search, name="search"),
-    path('buscket-insert', views.buscket_insert, name="buscket_insert"),
     path('search/info-<int:pk>-<str:ser_val>', views.search_prod_info, name="search_prod_info"),
+    path('buscket-insert', views.buscket_insert, name="buscket_insert"),
 ]

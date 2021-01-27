@@ -62,7 +62,16 @@ def basket(request):
         basket_prod.extend(prod_list)
     return render(request, 'main/basket.html', {'full': full_price, 'basket': basket, 'basket_prod': basket_prod, 'num': arr_num})
 def buscket_insert(request):
-    print('tut')
+    if request.method == 'POST':
+        post_id = request.POST['busk']
+        print(request.POST)
+        print(post_id)
+        print(request.user.id)
+        return HttpResponse('success')
+    else:
+        return HttpResponse("unsuccesful")
+    
+    
 def basket_info(request, pk):
     prod = product.objects.filter(Q(id_prod=pk))
     return render(request, 'main/basket_info.html',{'prod':prod[0]})
