@@ -212,13 +212,11 @@ html::-webkit-scrollbar-track {
 }
 
 .heart {
+  background: #fff;
   display: inline-block;
 }
-.heart:hover .bi-heart {
-  display: none;
-}
-.heart:hover .bi-heart-fill {
-  display: inline-block;
+.heart:hover {
+  cursor: pointer;
 }
 
 .basket-img {

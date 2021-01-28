@@ -1,12 +1,13 @@
 from django import forms
 from django.contrib import admin
-from .models import category, product, production_type, brand, sport_type, user_basket
+from .models import category, product, production_type, brand, sport_type, user_basket, save_item
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.translator import register
 from django.utils.safestring import mark_safe
 
 admin.site.register(brand)
 admin.site.register(sport_type)
+admin.site.register(save_item)
 
 @admin.register(user_basket)
 class user_basketAdmin(admin.ModelAdmin):

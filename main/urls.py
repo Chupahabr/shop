@@ -16,4 +16,6 @@ urlpatterns = [
     path('search', views.search, name="search"),
     path('search/info-<int:pk>-<str:ser_val>', views.search_prod_info, name="search_prod_info"),
     path('buscket-insert', views.buscket_insert, name="buscket_insert"),
+    path('bascket-count-update', views.basket_count_update, name="basket_count_update"),
+    path('fav-ins', views.fav_ins, name="fav_ins"),
 ]

@@ -83,7 +83,7 @@ class product(models.Model):
         verbose_name_plural = 'Продукты'
 
 class user_basket(models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Пользователь")
+    user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Пользователь", default='2')
     product = models.ForeignKey(product, on_delete=models.PROTECT, verbose_name="Продукт")
     count = models.IntegerField(verbose_name='Количество', default='1')
     
@@ -91,7 +91,7 @@ class user_basket(models.Model):
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзина'
     
-class save_item (models.Model):
+class save_item(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Пользователь")
     product = models.ForeignKey(product, on_delete=models.PROTECT, verbose_name="Продукт")
 

@@ -12,9 +12,13 @@
                 <div class="row col-9 p-3">
                     <a class="d-inline" href="{% url 'basket_info' item2.id_prod %}">{{item.product}}</a>
                     <span class="d-inline w-50">Количество:
-                    <select name="count" class="form-control w-md-25 w-50">
+                    <select name="{{item2.id_prod}}" onchange="change_sel('{{item2.id_prod}}')" id="" class="form-control w-md-25 w-50 select_count">
                         {% for index in num %}
-                        <option value="{{index}}">{{index}}</option>
+                            {% if index == item.count %}
+                                <option selected value="{{index}}">{{index}}</option>
+                            {% else %}
+                                <option value="{{index}}">{{index}}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     </span>
@@ -27,7 +31,7 @@
     </div>
     <div class="col-md-4 col-12">
         <p class="h3 text-center">Итоговая стоимость</p>
-        <p class="">Цена: {{full}},00 руб</p>
+        <p class="">Цена: <span class="price">{{full}}</span>,00 руб</p>
     </div>
 </div>
 <div>
