@@ -98,3 +98,22 @@ class save_item(models.Model):
     class Meta:
         verbose_name = "Понравившиеся"
         verbose_name_plural = "Понравившиеся"
+
+class delivery(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Пользователь")
+    arr_method = (
+        ('D','Delivery'),
+        ('P','Pick-up service'),
+        )
+    delivery_method = models.TextField(verbose_name='Метод доставки', choices=arr_method)
+    strit = models.TextField(verbose_name='Улица', blank=True, null=True)
+    house = models.TextField(verbose_name='Дом', blank=True, null=True)
+    housing = models.IntegerField(verbose_name='Корпус', blank=True, null=True)
+    floor = models.IntegerField(verbose_name='Этаж', blank=True, null=True)
+    flat = models.IntegerField(verbose_name='Квартира', blank=True, null=True)
+    entrance = models.IntegerField(verbose_name='Подъезд', blank=True, null=True)
+    tel = models.TextField(verbose_name='Телефон', blank=True, null=True)
+    
+    class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"

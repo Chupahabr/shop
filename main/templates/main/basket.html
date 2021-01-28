@@ -4,10 +4,11 @@
 <div class="row">
     <p class="h4">Моя корзина</p>
     <div class="col-md-8 col-12">
+    {% if basket %}
     {% for item in basket %}
         {% for item2 in basket_prod %}
             {% if item.product|safe == item2.prod_name|safe %}
-            <div class="d-flex basket-item fluid-content p-3 w-100">
+            <div class="d-flex basket-item fluid-content p-3 w-100" id="prod-{{item2.id_prod}}">
                 <img src="{{item2.image.url}}" class="col-3 img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} basket-img" alt="">
                 <div class="row col-9 p-3">
                     <a class="d-inline" href="{% url 'basket_info' item2.id_prod %}">{{item.product}}</a>
@@ -23,16 +24,28 @@
                     </select>
                     </span>
                     <span class="d-inline">{{item2.price}},00 руб</span>
+                    <a class="d-inline text-danger delete" id="delete" onclick="delete_bask('{{item2.id_prod}}')">удалить</a>
                 </div>
             </div>
             {% endif %}
         {% endfor %}
     {% endfor %}
+    {% else %}
+        <p class="h3">Корзина пуста.</p>
+        <p>Для добавления товаров в корзину необходимо добавить товар на странице с информацией.</p>
+    {% endif %}
     </div>
-    <div class="col-md-4 col-12">
-        <p class="h3 text-center">Итоговая стоимость</p>
-        <p class="">Цена: <span class="price">{{full}}</span>,00 руб</p>
-    </div>
+    <form method="POST" action="" class="col-md-4 col-12">
+        {% csrf_token %}
+        <p class="h3 text-left">Итого</p>
+        <select name="receiving" id="receiving" class="form-control">
+            <option selected value="Pick-up service">Самовывоз</option>
+            <option value="Delivery">Доставка</option>
+        </select>
+        <p class="">Всего: <input class="price mt-2" disabled value="{{full}}"> руб</p>
+        <span id="append_input_form"></span>
+        <input type="submit" class="btn btn-success" value="Подтвердить">
+    </form>
 </div>
 <div>
 

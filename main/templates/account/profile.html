@@ -3,6 +3,14 @@
 
 {% if user.is_authenticated %}
 <p>Привет {{user.username}}</p>
+
+<div>
+    <p class="h3">История заказов</p>
+</div>
+
+
+{% else %}
+
 {% endif %}
 
 {% endblock %}

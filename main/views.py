@@ -10,6 +10,8 @@ def index(request):
     return render(request, 'main/mainPage.html')
 def profile(request):
     return render(request, 'account/profile.html')
+
+
 def type_prod(request, people, name_category):
     cat = category.objects.filter(url=name_category)[0]
     g = us_people(people)
@@ -60,6 +62,18 @@ def buscket_insert(request):
         return HttpResponse('success')
     else:
         return HttpResponse("unsuccesful")
+def bascket_delete(request):
+    if request.method == 'POST':
+        prod_id = request.POST['prod']
+        attr = {
+            'user_id': request.user.id,
+            'product_id': prod_id,
+        }
+        b_filter = user_basket.objects.filter(**attr).delete()
+        fp = full_price(request)
+        return HttpResponse(str(fp))
+    else:
+        return HttpResponse("unsuccesful")
 def basket_count_update(request):
     if request.method == 'POST':
         prod_id = request.POST['prod']
@@ -69,7 +83,9 @@ def basket_count_update(request):
             'product_id': prod_id,
         }
         b_prod = user_basket.objects.filter(**attr).update(count=count)
-        return HttpResponse('success')
+        basket = user_basket.objects.filter(user=request.user.id)
+        fp = full_price(request)
+        return HttpResponse(str(fp))
     else:
         return HttpResponse("unsuccesful")
 def fav_ins(request):
@@ -124,6 +140,16 @@ def search_prod_info(request, pk, ser_val):
     b_filter = user_basket.objects.filter(**attr)
     return render(request, 'main/page_prod_info_search.html', {'prod': prod[0], 'fav': fav, 'basket': b_filter, "search_value": search_value})
 
+
+def full_price(request):
+    basket = user_basket.objects.filter(user=request.user.id)
+    full_price = 0
+    for item in basket:
+        count = item.count
+        prod_name = item.product
+        prod_list = product.objects.filter(Q(prod_name=prod_name))
+        full_price += count * prod_list[0].price
+    return full_price
 
 # Массивы
 def ru_people(people):

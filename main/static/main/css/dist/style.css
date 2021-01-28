@@ -212,11 +212,18 @@ html::-webkit-scrollbar-track {
 }
 
 .heart {
+  width: fit-content;
   background: #fff;
+  font-size: 12px;
   display: inline-block;
 }
 .heart:hover {
   cursor: pointer;
+}
+
+.delete {
+  cursor: pointer;
+  width: fit-content;
 }
 
 .basket-img {
@@ -225,4 +232,9 @@ html::-webkit-scrollbar-track {
 
 .basket-item div {
   height: fit-content;
+}
+
+.price {
+  width: 80px;
+  background-color: white;
 }

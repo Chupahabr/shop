@@ -60,11 +60,29 @@ $(document).ready(function() {
             }
         });
     });
+
 });
-function change_sel(e){
-    console.log(e);
+
+function delete_bask(e){
     sel = $('.select_count[name='+e+']');
-    console.log(sel.val());
+    $.ajax({
+        url: '/bascket-delete',
+        method: 'POST',
+        data: {
+            'prod': e,
+        },
+        success: function(d) {
+            $('.price').html(d);
+            $('#prod-'+e).remove()
+        },
+        error: function(d) {
+            console.log(d);
+        }
+    });
+}
+
+function change_sel(e){
+    sel = $('.select_count[name='+e+']');
     $.ajax({
         url: '/bascket-count-update',
         method: 'POST',
@@ -73,14 +91,21 @@ function change_sel(e){
             'prod': e,
         },
         success: function(d) {
-            console.log(d);
+            $('.price').html(d);
         },
         error: function(d) {
             console.log(d);
         }
     });
 }
-
+$('#receiving').on('change', function () {
+    sel = $('#receiving');
+    if (sel.val() == 'Доставка'){
+        $('#append_input_form').html(
+            "<input name='strit'><input name='house'><input name='floor'><input name='flat'><input name='entrance'><input name='tel'>"
+        );
+    }
+});
 function getCookie(name) {
     var cookieValue = null;
     var i = 0;
@@ -101,29 +126,3 @@ function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
-
-
-// $(document).ready(function() {
-//       $('#buscket').click(function(e) {
-//         // Stop form from sending request to server
-//         e.preventDefault();
-    
-//         var btn = $(this);
-//         console.log('click');
-//         $.ajax({
-//             method: "POST",
-//             url: "/buscket-insert",
-//             dataType: "json",
-//             data: {
-//               "name": btn.val(),
-//               'input': $('input').val()
-//             },
-//             success: function(data) {
-//               console.log(data);
-//             },
-//             error: function(er) {
-//               console.log(er);
-//             }
-//         });
-//       })
-// });
