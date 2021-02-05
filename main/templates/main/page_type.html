@@ -7,7 +7,7 @@
     {% for type in types %}
         <a href="{% url 'prod_type_list' people cat.url type.url %}" class="d-flex flex-wrap justify-content-center cont-type m-2">
             <img src="{{type.image.url}}" width="150" height="200" alt="">
-            <span>{{type.p_type}}</span><br>
+            <span class="w-100">{{type.p_type}}</span><br>
         </a>
     {% endfor %}
     </div>

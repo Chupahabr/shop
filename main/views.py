@@ -1,8 +1,9 @@
-from .models import category, product, production_type, brand, sport_type, user_basket, save_item
+from .models import category, product, production_type, brand, sport_type, user_basket, save_item, delivery
 from django.db.models.query import EmptyQuerySet
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.shortcuts import render
+from .forms import delivForm
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.utils.translation import gettext as _
 
@@ -29,7 +30,7 @@ def prod_type_list(request, people, category, type):
     return render(request, 'main/page_type_prod_list.html', {'prod_list': prod_list, 'type_prod': type_prod[0], 'g': g, "people": people})
 def search(request):
     search_value = request.GET.get('search', '')
-    prod_list = product.objects.filter(Q(prod_name__contains=search_value))
+    prod_list = product.objects.filter(Q(prod_name__icontains=search_value))
     return render(request, 'main/search.html',{'prod_list': prod_list, 'search_value': search_value})
 def basket(request):
     user_id = User.objects.get(username=request.user.username).id
@@ -43,10 +44,39 @@ def basket(request):
         prod_list = product.objects.filter(Q(prod_name=prod_name))
         full_price += count * prod_list[0].price
         basket_prod.extend(prod_list)
-    return render(request, 'main/basket.html', {'full': full_price, 'basket': basket, 'basket_prod': basket_prod, 'num': arr_num})
+    return render(request, 'main/basket.html', {'full': full_price, 'basket': basket, 'basket_prod': basket_prod, 'num': arr_num, 'form': delivForm})
+def make_dev(request):
+    if request.method == 'POST':
+        data = {
+            'user': request.user.id,
+            'delivery_method': request.POST['delivery_method'],
+            'strit': request.POST['strit'],
+            'house': request.POST['house'],
+            'housing': request.POST['housing'],
+            'floor': request.POST['floor'],
+            'flat': request.POST['flat'],
+            'entrance': request.POST['entrance'],
+            'tel': request.POST['tel'],
+            'price': full_price(request),
+        }
+        form = delivForm(data)
+        if form.is_valid():
+            form.save()
+            form_id = delivery.objects.filter(user=request.user.id).last().id
+            bask = user_basket.objects.filter(user=request.user.id)
+            for item in bask:
+                attr = {
+                    'user_id': request.user.id,
+                    'product_id': item.product,
+                }
 
+            return redirect('profile')
+        else:
+            error = 'Форма была не верной'
+            print(error)
+            return redirect('basket')
 # Ajax заросы
-def buscket_insert(request):
+def bascket_insert(request):
     if request.method == 'POST':
         prod_id = request.POST['bask']
         attr = {

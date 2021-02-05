@@ -35,15 +35,23 @@
         <p>Для добавления товаров в корзину необходимо добавить товар на странице с информацией.</p>
     {% endif %}
     </div>
-    <form method="POST" action="" class="col-md-4 col-12">
+    <form method="POST" action="{% url 'make_dev' %}" class="col-md-4 col-12">
         {% csrf_token %}
         <p class="h3 text-left">Итого</p>
-        <select name="receiving" id="receiving" class="form-control">
-            <option selected value="Pick-up service">Самовывоз</option>
-            <option value="Delivery">Доставка</option>
+        <select name="delivery_method" id="id_delivery_method" class="form-control">
+            <option selected value="P">Самовывоз</option>
+            <option value="D">Доставка</option>
         </select>
-        <p class="">Всего: <input class="price mt-2" disabled value="{{full}}"> руб</p>
-        <span id="append_input_form"></span>
+        <p class="">Всего: {{full}} руб</p>
+        <span id="append_input_form" class="d-none">
+            {{form.strit}}
+            {{form.house}}
+            {{form.housing}}
+            {{form.floor}}
+            {{form.flat}}
+            {{form.entrance}}
+            {{form.tel}}
+        </span>
         <input type="submit" class="btn btn-success" value="Подтвердить">
     </form>
 </div>

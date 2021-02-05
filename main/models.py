@@ -30,6 +30,8 @@ class production_type(models.Model):
     image = models.ImageField(verbose_name='Изображения', upload_to="type/", blank=True, null=True)
     url = models.CharField(max_length=50, verbose_name="URL", default="url")
 
+    image = models.ImageField(verbose_name='Изображения', upload_to="type/", null=True)
+
     def __str__(self):
         return self.p_type
 
@@ -113,7 +115,9 @@ class delivery(models.Model):
     flat = models.IntegerField(verbose_name='Квартира', blank=True, null=True)
     entrance = models.IntegerField(verbose_name='Подъезд', blank=True, null=True)
     tel = models.TextField(verbose_name='Телефон', blank=True, null=True)
-    
+    price = models.IntegerField(verbose_name=("Цена"), default='0')
+    date = models.DateTimeField(verbose_name=("Дата и время"), auto_now_add=True, null=True)
+
     class Meta:
         verbose_name = "Заказ"
         verbose_name_plural = "Заказы"

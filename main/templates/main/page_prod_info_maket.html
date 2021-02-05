@@ -44,10 +44,18 @@
             <div class="col-md-1 col-lg-1"></div>
         </div>
         <div class="row d-flex flex-wrap justify-content-around info">
+        {% if prod.info %}
             <div class="col-4 text-center p-3"><p class="h4">Информация</p>{{prod.info}}</div>
+        {% endif %}
+        {% if prod.about %}
             <div class="col-4 text-center p-3"><p class="h4">Обо мне</p>{{prod.about}}</div>
+        {% endif %}
+        {% if prod.upkeep %}
             <div class="col-4 text-center p-3"><p class="h4">Уход</p>{{prod.upkeep}}</div>
+        {% endif %}
+        {% if prod.size_and_cut %}
             <div class="col-4 text-center p-3"><p class="h4">Размер и шов</p>{{prod.size_and_cut}}</div>
+        {% endif %}
         </div>
     </div>
     <div class="col-1"></div>

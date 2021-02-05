@@ -7,7 +7,9 @@ from .models import category, product, production_type, brand, sport_type
 
 class categoryTranslationOptions(TranslationOptions):
     fields = ('category',)
-    empty_values = {'slug': None}
+    # empty_values = {'slug': None}
+    # required_languages = ('en', 'ru')
+    # required_languages = {'ru': ('category', 'Категории'), 'en': ('category', 'Category')}
 translator.register(category, categoryTranslationOptions)
 
 @register(production_type)

@@ -50,7 +50,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: '/buscket-insert',
+      url: '/bascket-insert',
       method: 'POST',
       data: {
         'bask': $(this).val()
@@ -74,7 +74,7 @@ function delete_bask(e) {
       'prod': e
     },
     success: function success(d) {
-      $('.price').html(d);
+      $('.price').val(d);
       $('#prod-' + e).remove();
     },
     error: function error(d) {
@@ -93,7 +93,8 @@ function change_sel(e) {
       'prod': e
     },
     success: function success(d) {
-      $('.price').html(d);
+      $('.price').val(d);
+      console.log(d);
     },
     error: function error(d) {
       console.log(d);
@@ -101,11 +102,13 @@ function change_sel(e) {
   });
 }
 
-$('#receiving').on('change', function () {
-  sel = $('#receiving');
+$('#id_delivery_method').on('change', function () {
+  sel = $('#id_delivery_method');
 
-  if (sel.val() == 'Доставка') {
-    $('#append_input_form').html("<input name='strit'><input name='house'><input name='floor'><input name='flat'><input name='entrance'><input name='tel'>");
+  if (sel.val() == 'D') {
+    $('#append_input_form').removeClass('d-none');
+  } else if (sel.val() == 'P') {
+    $('#append_input_form').addClass('d-none');
   }
 });
 

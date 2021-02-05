@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.vk',
     'allauth.socialaccount.providers.yandex',
+    
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -135,11 +137,16 @@ SITE_ID = 1
 
 IS_MONOLINGUAL=False
 
+<<<<<<< Updated upstream
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_REDIRECT_URL = "/"
 
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+=======
+
+
+>>>>>>> Stashed changes
 
 gettext = lambda s: s
 LANGUAGES = (
@@ -173,5 +180,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
-    )
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
 }

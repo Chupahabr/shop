@@ -234,7 +234,7 @@ html::-webkit-scrollbar-track {
   height: fit-content;
 }
 
-.price {
+input.price {
   width: 80px;
   background-color: white;
 }
