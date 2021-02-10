@@ -8,15 +8,10 @@
             <div class="d-flex justify-content-around flex-wrap">
             {% for type in types %}
                 {% if type.category|safe == el.category|safe %}
-<<<<<<< Updated upstream
-                <a href="{% url 'prod_type_list' people el.url type.url %}" class="d-flex flex-wrap justify-content-center cont-type m-2">
+                <a href="{% url 'prod_type_list' people el.url type.url %}" class="cart d-flex flex-wrap justify-content-center cont-type m-2">
                     <img src="{{type.image.url}}" width="150" height="200" alt="">
                     <span class="w-100">{{type.p_type}}</span><br>
                 </a>
-=======
-                <img src="{{type.image.url}}" width="50" height="60" alt="">
-                <a href="">{{type.p_type}}</a><br>
->>>>>>> Stashed changes
                 {% endif %}
             {% endfor %}
             </div>

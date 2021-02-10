@@ -2,7 +2,7 @@
 {% block content %}
 
 <section class="row section-main">
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-6 col-6">
         <a href="{% url 'category_list' 'male' %}" class="photo">
             <h1>Мужчины</h1>
             {% load static %}
@@ -12,7 +12,7 @@
             </div>
         </a>
     </div>
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-6 col-6">
         <a href="{% url 'category_list' 'female' %}" class="photo">
             <h1>Женщины</h1>
             {% load static %}
@@ -22,7 +22,7 @@
             </div>
         </a>
     </div>
-    <div class="col-lg-4 col-12">
+    {% comment %} <div class="col-lg-4 col-12">
         <a href="{% url 'category_list' 'child' %}" class="photo">
             <h1>Дети</h1>
             {% load static %}
@@ -31,7 +31,7 @@
                 <i class="glow"></i>
             </div>
         </a>
-    </div>
+    </div> {% endcomment %}
 </section>
 
 {% endblock %}

@@ -41,14 +41,6 @@ $(document).ready(function () {
     });
   });
   $('#buscket').on('click', function (e) {
-    if ($('#buscket').hasClass('btn-danger')) {
-      $('#buscket').removeClass('btn-danger');
-      $('#buscket').addClass('btn-success');
-    } else if ($('#buscket').hasClass('btn-success')) {
-      $('#buscket').removeClass('btn-success');
-      $('#buscket').addClass('btn-danger');
-    }
-
     $.ajax({
       url: '/bascket-insert',
       method: 'POST',
@@ -57,6 +49,14 @@ $(document).ready(function () {
       },
       success: function success(d) {
         console.log(d);
+
+        if ($('#buscket').hasClass('btn-danger')) {
+          $('#buscket').removeClass('btn-danger');
+          $('#buscket').addClass('btn-success');
+        } else if ($('#buscket').hasClass('btn-success')) {
+          $('#buscket').removeClass('btn-success');
+          $('#buscket').addClass('btn-danger');
+        }
       },
       error: function error(d) {
         console.log(d);

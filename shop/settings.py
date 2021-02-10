@@ -137,16 +137,11 @@ SITE_ID = 1
 
 IS_MONOLINGUAL=False
 
-<<<<<<< Updated upstream
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_REDIRECT_URL = "/"
 
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-=======
-
-
->>>>>>> Stashed changes
 
 gettext = lambda s: s
 LANGUAGES = (

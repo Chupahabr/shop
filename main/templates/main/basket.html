@@ -3,6 +3,9 @@
 
 <div class="row">
     <p class="h4">Моя корзина</p>
+    {% if error %}
+        <p>{{error}}</p>
+    {% endif %}
     <div class="col-md-8 col-12">
     {% if basket %}
     {% for item in basket %}

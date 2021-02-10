@@ -19,14 +19,20 @@ def type_prod(request, people, name_category):
     types = production_type.objects.filter(Q(people=g) & Q(category=cat))
     return render(request, 'main/page_type.html',{'people': people, 'category': category, 'types': types, 'cat': cat})
 def category_list(request, people):
-    g = us_people(people)
-    cat = category.objects.all()
-    types = production_type.objects.filter(people=g)
+    try:
+        g = us_people(people)
+        cat = category.objects.all()
+        types = production_type.objects.filter(people=g)
+    except:
+        return render(request, 'main/error404_prod_info.html')
     return render(request, 'main/page_catalog.html', {'cat': cat, "people": people, 'types': types})
 def prod_type_list(request, people, category, type):
-    g = ru_people(people)
-    type_prod = production_type.objects.filter(Q(url__contains=type))
-    prod_list = product.objects.filter(Q(production_type=type_prod[0]))
+    try:
+        g = ru_people(people)
+        type_prod = production_type.objects.filter(Q(url__contains=type))
+        prod_list = product.objects.filter(Q(production_type=type_prod[0]))
+    except:
+        return render(request, 'main/error404_prod_info.html')
     return render(request, 'main/page_type_prod_list.html', {'prod_list': prod_list, 'type_prod': type_prod[0], 'g': g, "people": people})
 def search(request):
     search_value = request.GET.get('search', '')
@@ -75,6 +81,8 @@ def make_dev(request):
             error = 'Форма была не верной'
             print(error)
             return redirect('basket')
+
+
 # Ajax заросы
 def bascket_insert(request):
     if request.method == 'POST':
@@ -89,8 +97,10 @@ def bascket_insert(request):
         else:
             b = user_basket.objects.create(**attr)
             b.save()
+        print('success')
         return HttpResponse('success')
     else:
+        print("unsuccesful")
         return HttpResponse("unsuccesful")
 def bascket_delete(request):
     if request.method == 'POST':
@@ -135,6 +145,7 @@ def fav_ins(request):
     else:
         return HttpResponse("unsuccesful")
 
+
 # Вывод данных продукта
 def basket_info(request, pk):
     prod = product.objects.filter(Q(id_prod=pk))
@@ -146,10 +157,12 @@ def basket_info(request, pk):
     fav = save_item.objects.filter(**attr)
     return render(request, 'main/basket_info.html',{'prod':prod[0], 'basket': b_filter, 'fav': fav})
 def prod_info(request, people, pk):
-    g = ru_people(people)
-    t_g = us_people(people)
-    prod = product.objects.filter(Q(id_prod=pk))
-    _type = production_type.objects.filter(Q(p_type=prod[0].production_type) & Q(people=t_g))[0]
+    try:
+        g, t_g = ru_people(people), us_people(people)
+        prod = product.objects.filter(Q(id_prod=pk))
+        _type = production_type.objects.filter(Q(p_type=prod[0].production_type) & Q(people=t_g))[0]
+    except:
+        return render(request, 'main/error404_prod_info.html')
     _cat = category.objects.filter(category=_type.category)[0]
     _category = _type.category
     attr = {
@@ -162,15 +175,10 @@ def prod_info(request, people, pk):
 def search_prod_info(request, pk, ser_val):
     prod = product.objects.filter(Q(id_prod=pk))
     search_value = ser_val
-    attr = {
-        'user_id': request.user.id,
-        'product_id': pk,
-    }
+    attr = { 'user_id': request.user.id, 'product_id': pk,}
     fav = save_item.objects.filter(**attr)
     b_filter = user_basket.objects.filter(**attr)
     return render(request, 'main/page_prod_info_search.html', {'prod': prod[0], 'fav': fav, 'basket': b_filter, "search_value": search_value})
-
-
 def full_price(request):
     basket = user_basket.objects.filter(user=request.user.id)
     full_price = 0
@@ -181,7 +189,7 @@ def full_price(request):
         full_price += count * prod_list[0].price
     return full_price
 
-# Массивы
+# Ру, не ру
 def ru_people(people):
     if people == 'male':
         g = 'Мужские'
