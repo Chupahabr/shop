@@ -10,7 +10,8 @@ from django.utils.translation import gettext as _
 def index(request):
     return render(request, 'main/mainPage.html')
 def profile(request):
-    return render(request, 'account/profile.html')
+    history = delivery.objects.filter(user=request.user.id)
+    return render(request, 'account/profile.html', {'history': history})
 
 
 def type_prod(request, people, name_category):
@@ -39,16 +40,13 @@ def search(request):
     prod_list = product.objects.filter(Q(prod_name__icontains=search_value))
     return render(request, 'main/search.html',{'prod_list': prod_list, 'search_value': search_value})
 def basket(request):
-    user_id = User.objects.get(username=request.user.username).id
-    basket = user_basket.objects.filter(user=user_id)
+    basket = user_basket.objects.filter(user=request.user.id)
     basket_prod = []
     arr_num = range(1, 11)
     full_price = 0
     for item in basket:
-        count = item.count
-        prod_name = item.product
-        prod_list = product.objects.filter(Q(prod_name=prod_name))
-        full_price += count * prod_list[0].price
+        prod_list = product.objects.filter(Q(prod_name=item.product))
+        full_price += item.count * prod_list[0].price
         basket_prod.extend(prod_list)
     return render(request, 'main/basket.html', {'full': full_price, 'basket': basket, 'basket_prod': basket_prod, 'num': arr_num, 'form': delivForm})
 def make_dev(request):
@@ -81,7 +79,6 @@ def make_dev(request):
             error = 'Форма была не верной'
             print(error)
             return redirect('basket')
-
 
 # Ajax заросы
 def bascket_insert(request):

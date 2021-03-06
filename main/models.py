@@ -22,15 +22,12 @@ class production_type(models.Model):
     arr_people = (
         ('m','Male'),
         ('f','Female'),
-        ('c','Child'),
         )
     people = models.TextField(verbose_name="Люди", choices=arr_people, default='All')
     description = models.TextField(verbose_name="Описание", blank=True, null=True)
 
     image = models.ImageField(verbose_name='Изображения', upload_to="type/", blank=True, null=True)
     url = models.CharField(max_length=50, verbose_name="URL", default="url")
-
-    image = models.ImageField(verbose_name='Изображения', upload_to="type/", null=True)
 
     def __str__(self):
         return self.p_type
@@ -75,7 +72,7 @@ class product(models.Model):
     brand = models.ForeignKey(brand, on_delete=models.PROTECT, verbose_name="Бренд", blank=True, null=True)
     sport_type = models.ForeignKey(sport_type, on_delete=models.PROTECT, verbose_name="Вид спорта", blank=True, null=True)
     production_type = models.ForeignKey(production_type, on_delete=models.PROTECT, verbose_name="Тип продукта", blank=True, null=True)
-    image = models.ImageField(verbose_name='Изображения', upload_to="prod/", blank=True, null=True)
+    image = models.ImageField(verbose_name='Загрузить изображение', upload_to="prod/", blank=True, null=True)
 
     def __str__(self):
         return self.prod_name

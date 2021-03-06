@@ -7,7 +7,24 @@
 <div>
     <p class="h3">История заказов</p>
 </div>
-
+<table class="history_del">
+<thead>
+    <th>Номер заказа</th>
+    <th>Метод доставки</th>
+    <th>Дата заказа</th>
+    <th>Полная цена</th>
+</thead>
+<tbody>
+{% for item in history %}
+    <tr>
+        <th><a href="#">{{item.id}}</a></th>
+        <th>{{item.delivery_method}}</th>
+        <th>{{item.date}}</th>
+        <th>{{item.price}},00 руб</th>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
 
 {% else %}
 
