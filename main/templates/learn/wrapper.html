@@ -3,16 +3,17 @@
 <html lang="ru">
     <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=3.0" name="viewport" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/swiper-bundle.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'main/css/dist/style_img_effect.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'main/css/dist/style.css' %}" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab&display=swap" rel="stylesheet">
-    <title>Туть</title>
+    <title>{% block title %}{% endblock %} - Shop</title>
 </head>
 <body class="container-fluid body-titles">
 <header>
@@ -25,10 +26,72 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="#">Язык</a>
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="#">{% trans 'Язык' %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'main' %}">Главная</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'main' %}">{% trans 'Главная' %}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">{% trans 'Мужская' %}</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item h4" href="#">Одежда</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="d-flex flex-wrap flex-lg-nowrap">
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'clothing' 'tracksuits-joggers' %}">Cпортивные костюмы и джоггеры</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'clothing' 'trousers-chinos' %}">Брюки и чиносы</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'clothing' 'jumpers-cardigans' %}">Джемперы и кардиганы</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'clothing' 'jeans-male' %}">Джинсы</a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item h4" href="#">Обувь</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="d-flex flex-wrap flex-lg-nowrap">
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'shoes' 'boots-male' %}">Ботинки</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'shoes' 'sneakers-male' %}">Кроссовки</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'shoes' 'summer-shoes-male' %}">Летняя обувь</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'shoes' 'loafer' %}">Лоферы</a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item h4" href="#">Аксессуары</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="d-flex flex-wrap flex-lg-nowrap">
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'accessories' 'ties' %}">Галстуки</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'accessories' 'headdress' %}">Кепки, шапки и шляпы</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'accessories' 'wallets' %}">Кошельки</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'male' 'accessories' 'mask_male' %}">Маски для лица</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">{% trans 'Женская' %}</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item h4" href="{% url 'type_prod' 'female' 'clothing' %}">Одежда</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="d-flex flex-wrap flex-lg-nowrap">
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'clothing' 'tracksuits-joggers' %}">Cпортивная одежда</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'clothing' 'tracksuits-joggers' %}">Джемперы и кардиганы</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'clothing' 'tracksuits-joggers' %}">Джинсы</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'clothing' 'tracksuits-joggers' %}">Брюки и леггинсы</a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item h4" href="{% url 'type_prod' 'female' 'shoes' %}">Обувь</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="d-flex flex-wrap flex-lg-nowrap">
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'shoes' 'tracksuits-joggers' %}">Ботинки</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'shoes' 'tracksuits-joggers' %}">Каблуки</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'shoes' 'tracksuits-joggers' %}">Кроссовки</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'shoes' 'tracksuits-joggers' %}">Летняя обувь</a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item h4" href="{% url 'type_prod' 'female' 'accessories' %}">Аксессуары</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="d-flex flex-wrap flex-lg-nowrap">
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'accessories' 'tracksuits-joggers' %}">Аксессуары для волос</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'accessories' 'tracksuits-joggers' %}">Маски для лица</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'accessories' 'tracksuits-joggers' %}">Носки, чулки и колготки</a>
+                            <a class="dropdown-item" href="{% url 'prod_type_list' 'female' 'accessories' 'tracksuits-joggers' %}">Перчатки</a>
+                        </li>
+                    </ul>
                 </li>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">Список</a>
@@ -56,27 +119,27 @@
                     </li>
                   {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link mt-1" href="{% url 'profile' %}">{{user.username|upper}}</a></li>
-                    <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_logout' %}">Выйти</a></li>
+                    <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_logout' %}">{% trans 'Выйти' %}</a></li>
                   {% else %}
-                    <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_login' %}">Вход</a></li>
-                    <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_signup' %}">Регистрация</a></li>
+                    <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_login' %}">{% trans 'Вход' %}</a></li>
+                    <li class="nav-item"><a class="nav-link mt-1" href="{% url 'account_signup' %}">{% trans 'Регистрация' %}</a></li>
                   {% endif %}
                 </ul>
               </div>
             <form class="d-flex" action="{% url 'search' %}" method="GET">
-                <input class="form-control mr-2 w-75" type="search" placeholder="Искать" aria-label="Search" name="search">
-                <button class="btn btn-outline-success" type="submit">Искать</button>
+                <input class="form-control mr-2 w-75" type="search" placeholder="{% trans 'Искать' %}" aria-label="Search" name="search">
+                <button class="btn btn-outline-success" type="submit">{% trans 'Искать' %}</button>
             </form> 
             </div>
         </div>
     </nav>
 </header>
-<main class="container-fluid">
+<main class="container-fluid my-4">
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Изменить язык</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{% trans 'Изменить язык' %}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -96,7 +159,7 @@
                     </option>
                 {% endfor %}
             </select>
-            <input class="btn" type="submit" value="Изменить">
+            <input class="btn" type="submit" value="{% trans 'Изменить' %}">
         </form>
         </div>
         </div>
@@ -112,6 +175,8 @@
 {% comment %} <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> {% endcomment %}
 {% comment %} <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> {% endcomment %}
 <script src="{% static 'main/javascript/jquery-3.5.1.js' %}"></script>
+<script src="{% static 'main/javascript/swiper-bundle.min.js' %}"></script>
+<!-- <script src="{% static 'main/javascript/jquery.fancybox.min.js' %}"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 <script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
 <script src="{% static 'main/javascript/script.js' %}"></script>

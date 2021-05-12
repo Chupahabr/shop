@@ -1,4 +1,5 @@
-{% extends 'learn/wrapper.html' %}
+{% extends 'learn/wrapper.html' %}{% load i18n %}
+{% block title %}{{prod.prod_name}}{% endblock %}
 {% block content %}
 <div class="row">
 {% block comeback %}
@@ -9,16 +10,31 @@
     <div class="col-1"></div>
     <div class="col">
         <div class="row">
-            <div class="col-md-1 col-lg-1"></div>
-            <div class="col-md-5 col-lg-4 p-3"><img src="{{prod.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></div>
-            <div class="col-md-5 col-lg-6">
+            <div class="imglist col-md-7 col-lg-6 px-5 pb-5 pt-3">
+                <div class="swiper-container swiper-container-s d-flex">
+                    <div class="swiper-pagination d-flex flex-column"></div>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="{{prod.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                        </div>
+                        {% for img in imgs %}
+                        <div class="swiper-slide">
+                            <img src="{{img.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-button-prev prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-5">
                 <div class="h4 p-3">{{prod.prod_name}}</div>
-                <div class="h4 p-3">Цена: {{prod.price}},00 руб</div>
+                <div class="h4 p-3">{% trans 'Цена' %}: {{prod.price}},00 {% trans 'руб' %}</div>
 
                 {% if basket|length == 0 %}
-                    <button class="btn-danger btn" id="buscket" name="busk" value="{{prod.id_prod}}">Добавить в корзину</button>
+                    <button class="btn-success btn" id="buscket" name="busk" value="{{prod.id_prod}}">{% trans 'Добавить в корзину' %}</button>
                 {% else %}
-                    <button class="btn-success btn" id="buscket" name="busk" value="{{prod.id_prod}}">Добавить в корзину</button>
+                    <button class="btn-danger btn" id="buscket" name="busk" value="{{prod.id_prod}}">{% trans 'Добавить в корзину' %}</button>
                 {% endif %}
 
                 <button class="heart" id="heart" value="{{prod.id_prod}}">
@@ -37,7 +53,7 @@
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                     </svg>
                 {% endif %}
-                Добавить в избранное
+                {% trans 'Добавить в избранное' %}
                 </button>
                 
             </div>
@@ -45,16 +61,16 @@
         </div>
         <div class="row d-flex flex-wrap justify-content-around info">
         {% if prod.info %}
-            <div class="col-4 text-center p-3"><p class="h4">Информация</p>{{prod.info}}</div>
+            <div class="col-12 col-md-4 text-center p-3"><p class="h4">{% trans 'Информация' %}</p>{{prod.info}}</div>
         {% endif %}
         {% if prod.about %}
-            <div class="col-4 text-center p-3"><p class="h4">Обо мне</p>{{prod.about}}</div>
+            <div class="col-12 col-md-4 text-center p-3"><p class="h4">{% trans 'Обо мне' %}</p>{{prod.about}}</div>
         {% endif %}
         {% if prod.upkeep %}
-            <div class="col-4 text-center p-3"><p class="h4">Уход</p>{{prod.upkeep}}</div>
+            <div class="col-12 col-md-4 text-center p-3"><p class="h4">{% trans 'Уход' %}</p>{{prod.upkeep}}</div>
         {% endif %}
         {% if prod.size_and_cut %}
-            <div class="col-4 text-center p-3"><p class="h4">Размер и шов</p>{{prod.size_and_cut}}</div>
+            <div class="col-12 col-md-4 text-center p-3"><p class="h4">{% trans 'Размер и шов' %}</p>{{prod.size_and_cut}}</div>
         {% endif %}
         </div>
     </div>

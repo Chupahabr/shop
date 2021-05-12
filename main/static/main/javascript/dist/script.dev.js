@@ -62,6 +62,29 @@ $(document).ready(function () {
         console.log(d);
       }
     });
+  }); // slider
+
+  var menu = [];
+
+  for (var i = 0; i < $('.swiper-wrapper .img-fluid').length; i++) {
+    menu.push($('.swiper-wrapper .img-fluid')[i].src);
+  }
+
+  var swiper_s = new Swiper('.swiper-container-s', {
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      bulletClass: "image_bullet my-2 mx-auto",
+      // hiddenClass: "",
+      bulletActiveClass: "image_bullet_active",
+      renderBullet: function renderBullet(index, className) {
+        return '<img class="' + className + '" src="' + menu[index] + '"/>';
+      }
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
   });
 });
 
@@ -74,7 +97,7 @@ function delete_bask(e) {
       'prod': e
     },
     success: function success(d) {
-      $('.price').val(d);
+      $('.price').html(d);
       $('#prod-' + e).remove();
     },
     error: function error(d) {
@@ -93,7 +116,7 @@ function change_sel(e) {
       'prod': e
     },
     success: function success(d) {
-      $('.price').val(d);
+      $('.price').html(d);
       console.log(d);
     },
     error: function error(d) {

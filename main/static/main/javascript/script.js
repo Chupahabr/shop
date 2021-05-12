@@ -61,6 +61,30 @@ $(document).ready(function() {
         });
     });
 
+    // slider
+    let menu = [];
+    for (var i = 0; i < $('.swiper-wrapper .img-fluid').length; i++) {
+        menu.push($('.swiper-wrapper .img-fluid')[i].src);
+    }
+    const swiper_s = new Swiper('.swiper-container-s', {
+        
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            bulletClass: "image_bullet my-2 mx-auto",
+            // hiddenClass: "",
+            bulletActiveClass: "image_bullet_active",
+            renderBullet: function (index, className) {
+                return '<img class="'+ className +'" src="' + menu[index] + '"/>';
+            },
+        },
+
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    
 });
 
 function delete_bask(e){
@@ -72,7 +96,7 @@ function delete_bask(e){
             'prod': e,
         },
         success: function(d) {
-            $('.price').val(d);
+            $('.price').html(d);
             $('#prod-'+e).remove()
         },
         error: function(d) {
@@ -90,7 +114,7 @@ function change_sel(e){
             'prod': e,
         },
         success: function(d) {
-            $('.price').val(d);
+            $('.price').html(d);
             console.log(d);
         },
         error: function(d) {

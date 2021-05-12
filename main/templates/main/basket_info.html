@@ -1,4 +1,5 @@
 {% extends 'main/page_prod_info_maket.html' %}
+{% load i18n %}
 {% block comeback %}
-    <p><a href="{% url 'main' %}">Главная</a> -> <a href="{% url 'basket' %}">Моя корзина</a> -> {{prod.prod_name}}</p>
+    <p><a href="{% url 'main' %}">{% trans 'Главная' %}</a> -> <a href="{% url 'basket' %}">{% trans 'Моя корзина' %}</a> -> {{prod.prod_name}}</p>
 {% endblock %}

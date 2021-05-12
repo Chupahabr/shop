@@ -1,10 +1,11 @@
 {% extends 'learn/wrapper.html' %}
+{% block title %}Главная{% endblock %}
 {% block content %}
-
+{% load i18n %}
 <section class="row section-main">
     <div class="col-lg-6 col-6">
         <a href="{% url 'category_list' 'male' %}" class="photo">
-            <h1>Мужчины</h1>
+            <h1>{% trans 'Мужчины' %}</h1>
             {% load static %}
                 <img src="{% static 'main/image/men_1224-removebg.png' %}" />
             <div class="glow-wrap">
@@ -14,7 +15,7 @@
     </div>
     <div class="col-lg-6 col-6">
         <a href="{% url 'category_list' 'female' %}" class="photo">
-            <h1>Женщины</h1>
+            <h1>{% trans 'Женщины' %}</h1>
             {% load static %}
                 <img src="{% static 'main/image/girl_1224-removebg.png' %}" />
             <div class="glow-wrap">
@@ -22,16 +23,6 @@
             </div>
         </a>
     </div>
-    {% comment %} <div class="col-lg-4 col-12">
-        <a href="{% url 'category_list' 'child' %}" class="photo">
-            <h1>Дети</h1>
-            {% load static %}
-                <img src="{% static 'main/image/child_1224.png' %}" />
-            <div class="glow-wrap">
-                <i class="glow"></i>
-            </div>
-        </a>
-    </div> {% endcomment %}
 </section>
 
 {% endblock %}

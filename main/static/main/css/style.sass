@@ -126,6 +126,8 @@ html::-webkit-scrollbar-track
     width: 250px
     color: black
     text-decoration: none
+    border: 1px solid #ececec
+    border-radius: 4px
     img
         width: 100%
     .name
@@ -149,6 +151,8 @@ html::-webkit-scrollbar-track
     font-size: 12px
     &:hover
         cursor: pointer
+    &:focus
+        outline: none
     display: inline-block
 .delete
     cursor: pointer
@@ -164,3 +168,91 @@ input.price
 .history_del
     th
         padding: 10px
+body
+    min-height: 100vh
+    padding-bottom: 10em
+    padding-top: 4em
+
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction
+    bottom: initial
+    left: 0
+    width: auto
+.swiper-container
+    position: relative
+    padding-left: 100px
+    height: 700px
+.swiper-container-vertical > .swiper-pagination-bullets
+    left: 1em!important
+    right: initial!important
+.prev
+    left: inherit
+.swiper-slide
+    position: relative
+    text-align: center
+.swiper-slide img
+    max-width: 100%
+    max-height: 100%
+    margin: 0 auto
+    display: inline-block
+.image_bullet
+    max-width: 80px
+    opacity: .5
+.image_bullet_active
+    max-width: 90px
+    opacity: 1
+.imglist
+    > div
+        height: 100%
+    height: 650px
+
+.swiper-slide-prev
+    padding-right: 100px
+.cart
+    border: 1px solid #ececec
+    padding: 10px 0 4px
+    text-decoration: none
+    color: #333131
+    span
+        padding-top: 6px
+    &:hover
+        border-color: #fff
+        box-shadow: 0 10px 20px 0 rgba(0,0,0,.1)
+        -webkit-transform: translateY(-1px)
+        transform: translateY(-1px)
+        background-color: #fff
+        z-index: 1
+        transition: box-shadow ease 0.2s, border ease-out 0.2s, transform ease 0.2s
+.signup, .login
+    width: 678px
+    input[type='password'], input[type='login'], input[type='email'], input[type='text'], button[type='submit']
+        display: block
+        width: 100%
+        min-height: calc(1.5em + .75rem + 2px)
+        padding: .375rem .75rem
+        font-size: 1rem
+        font-weight: 400
+        line-height: 1.5
+        color: #495057
+        background-color: #fff
+        background-clip: padding-box
+        border: 1px solid #ced4da
+        -webkit-appearance: none
+        -moz-appearance: none
+        appearance: none
+        border-radius: .25rem
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+    button[type='submit']
+        width: fit-content
+        background-color: #28a745
+        color: #fff
+.head-signup, .head-login
+    width: 900px
+.socialaccount_ballot
+    width: 678px
+@media ( max-width: 900px )
+    .head-login
+        width: 100%
+@media ( max-width: 768px )
+    .head-signup, .signup, .socialaccount_ballot, .head-login, .login
+        width: 100%
+    

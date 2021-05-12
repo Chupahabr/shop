@@ -1,16 +1,18 @@
 {% extends 'learn/wrapper.html' %}
 {% block content %}
-
+{% load i18n %}
+<div class="container">
 <div>
     <p class="h4 p-3">{{cat.category}}</p>
-    <div class="d-flex justify-content-around flex-wrap">
+    <div class="d-flex justify-content-start flex-wrap px-5">
     {% for type in types %}
-        <a href="{% url 'prod_type_list' people cat.url type.url %}" class="d-flex flex-wrap justify-content-center cont-type m-2">
-            <img src="{{type.image.url}}" width="150" height="200" alt="">
-            <span class="w-100">{{type.p_type}}</span><br>
+        <a href="{% url 'prod_type_list' people cat.url type.url %}" class="cart d-flex flex-wrap justify-content-center cont-type px-3">
+            <img src="{{type.image.url}}" class="img-fluid" alt="">
+            <span class="w-100 d-flex justify-content-center align-items-end">{{type.p_type}}</span><br>
         </a>
     {% endfor %}
     </div>
-</div><br>
+</div>
+</div>
 
 {% endblock %}

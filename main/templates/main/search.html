@@ -1,9 +1,9 @@
 {% extends 'learn/wrapper.html' %}
 {% block content %}
-
+{% load i18n %}
 <div class="row">
     <p class="h3">
-        Результат поиска "{{search_value}}"
+        {% trans 'Результат поиска' %} "{{search_value}}"
     </p>
 </div>
 
@@ -12,7 +12,7 @@
     <a href="{% url 'search_prod_info'  item.id_prod search_value %}" class="d-flex prod-cont flex-wrap p-3">
         <img src="{{item.image.url}}" alt="">
         <span class="name">{{item.prod_name}}</span>
-        <span class="price">Цена: {{item.price}},00 руб</span>
+        <span class="price">{% trans 'Цена' %}: {{item.price}},00 {% trans 'руб' %}</span>
     </a>
 {% endfor %}
 </div>

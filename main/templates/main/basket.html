@@ -1,8 +1,9 @@
 {% extends 'learn/wrapper.html' %}
+{% block title %}Корзина{% endblock %}
 {% block content %}
-
+{% load i18n %}
 <div class="row">
-    <p class="h4">Моя корзина</p>
+    <p class="h4">{% trans 'Моя корзина' %}</p>
     {% if error %}
         <p>{{error}}</p>
     {% endif %}
@@ -15,7 +16,7 @@
                 <img src="{{item2.image.url}}" class="col-3 img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} basket-img" alt="">
                 <div class="row col-9 p-3">
                     <a class="d-inline" href="{% url 'basket_info' item2.id_prod %}">{{item.product}}</a>
-                    <span class="d-inline w-50">Количество:
+                    <span class="d-inline w-50">{% trans 'Количество' %}:
                     <select name="{{item2.id_prod}}" onchange="change_sel('{{item2.id_prod}}')" id="" class="form-control w-md-25 w-50 select_count">
                         {% for index in num %}
                             {% if index == item.count %}
@@ -27,25 +28,25 @@
                     </select>
                     </span>
                     <span class="d-inline">{{item2.price}},00 руб</span>
-                    <a class="d-inline text-danger delete" id="delete" onclick="delete_bask('{{item2.id_prod}}')">удалить</a>
+                    <a class="d-inline text-danger delete" id="delete" onclick="delete_bask('{{item2.id_prod}}')">{% trans 'удалить' %}</a>
                 </div>
             </div>
             {% endif %}
         {% endfor %}
     {% endfor %}
     {% else %}
-        <p class="h3">Корзина пуста.</p>
-        <p>Для добавления товаров в корзину необходимо добавить товар на странице с информацией.</p>
+        <p class="h3">{% trans 'Корзина пуста' %}.</p>
+        <p>{% trans 'Для добавления товаров в корзину необходимо добавить товар на странице с информацией' %}.</p>
     {% endif %}
     </div>
     <form method="POST" action="{% url 'make_dev' %}" class="col-md-4 col-12">
         {% csrf_token %}
-        <p class="h3 text-left">Итого</p>
+        <p class="h3 text-left">{% trans 'Итого' %}</p>
         <select name="delivery_method" id="id_delivery_method" class="form-control">
-            <option selected value="P">Самовывоз</option>
-            <option value="D">Доставка</option>
+            <option selected value="P">{% trans 'Самовывоз' %}</option>
+            <option value="D">{% trans 'Доставка' %}</option>
         </select>
-        <p class="">Всего: <div class="price">{{full}}</div> руб</p>
+        <p class="">{% trans 'Всего' %}: <span class="price">{{full}}</span> {% trans 'руб' %}</p>
         <span id="append_input_form" class="d-none">
             {{form.strit}}
             {{form.house}}
@@ -55,7 +56,7 @@
             {{form.entrance}}
             {{form.tel}}
         </span>
-        <input type="submit" class="btn btn-success" value="Подтвердить">
+        <input type="submit" class="btn btn-success" value="{% trans 'Подтвердить' %}">
     </form>
 </div>
 <div>

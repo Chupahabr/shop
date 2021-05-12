@@ -81,6 +81,14 @@ class product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
 
+class product_images(models.Model):
+    id_prod = models.ForeignKey(product, on_delete=models.PROTECT, verbose_name="Продукт")
+    image = models.ImageField(verbose_name='Загрузить изображение', upload_to="prod_img/")
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'
+
 class user_basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Пользователь", default='2')
     product = models.ForeignKey(product, on_delete=models.PROTECT, verbose_name="Продукт")

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from .models import category, product, production_type, brand, sport_type, user_basket, save_item, delivery
+from .models import category, product, production_type, brand, sport_type, user_basket, save_item, delivery, product_images
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.translator import register
 from django.utils.safestring import mark_safe
@@ -8,6 +8,21 @@ from django.contrib.auth.models import User
 
 admin.site.register(brand)
 admin.site.register(sport_type)
+
+@admin.register(product_images)
+class product_imagesAdmin(admin.ModelAdmin):
+    list_display = ('id_prod', 'get_image')
+    list_display_links = ('get_image',)
+
+    def get_image(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src={obj.image.url} width="90" height="120">')
+        else:
+            return '(none)'
+
+class imagesInline(admin.StackedInline):
+    model = product_images
+    extra = 1
 
 @admin.register(delivery)
 class deliveryAdmin(admin.ModelAdmin):
@@ -35,6 +50,9 @@ class productAdmin(admin.ModelAdmin):
     list_filter = ('brand','sport_type')
     search_fields = ('prod_name', 'production_type__p_type')
     save_as = True
+
+    inlines = [imagesInline]
+
     fieldsets = (
         ('Названия', {
             "fields": (('prod_name'), ('prod_name_ru'), ('prod_name_en'),)
@@ -87,6 +105,3 @@ class production_typeAdmin(admin.ModelAdmin):
 
     get_image.allow_tags = True
     get_image.short_description = "Изображение"
-
-# class production_typeInline(admin.TabularInline):
-#     model = production_type
